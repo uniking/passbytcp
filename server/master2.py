@@ -5,6 +5,7 @@ from common_func import *
 import queue
 # import ssl
 import base64
+import os
 
 class http_service:
     def __init__(self,cfg):
@@ -188,6 +189,7 @@ class HTServer:
     def _transfer_complete(self, addr_customer):
         """a callback for SocketBridge, do some cleanup jobs"""
         log.info("customer complete: {}".format(addr_customer))
+        os.system("echo "+addr_customer[0] + " >> customer.log")
         del self.working_pool[addr_customer]
 
     def _serve_customer(self, conn_customer,):
